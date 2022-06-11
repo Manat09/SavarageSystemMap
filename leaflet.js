@@ -1,6 +1,6 @@
 var map = L.map('map').setView([51.090909, 71.418214], 14);
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors by Manat and Andrey'
 });
 osm.addTo(map);
 var marker = L.marker([51.090909, 71.418214]).addTo(map);
@@ -72,7 +72,6 @@ googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
 googleSat.addTo(map);
 
 var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
-    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     subdomains: 'abcd',
     minZoom: 1,
     maxZoom: 16,
@@ -86,10 +85,10 @@ Stamen_Watercolor.addTo(map);
 ===================================================*/
 
 var baseLayers = {
-    "Satellite":googleSat,
-    "Google Map":googleStreets,
-    "Water Color":Stamen_Watercolor,
-    "OpenStreetMap": osm,
+    "Схема": osm,
+    "Спутник":googleSat,
+    "Гибрид":googleStreets,
+    "Цветовая: Вода":Stamen_Watercolor,
 };
 
 L.control.layers(baseLayers).addTo(map);
