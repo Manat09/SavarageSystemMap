@@ -37,3 +37,5 @@ function onMapClick(e) {
 }
 
 map.on('click', onMapClick);
+
+L.control.locate().addTo(map);
