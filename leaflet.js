@@ -1,6 +1,6 @@
 var map = L.map('map').setView([51.090909, 71.418214], 14);
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors by Manat and Andrey'
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | by Manat and Andrey'
 });
 osm.addTo(map);
 var marker = L.marker([51.090909, 71.418214]).addTo(map);
