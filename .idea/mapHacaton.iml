@@ -6,5 +6,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="leaflet" level="application" />
     <orderEntry type="library" name="leaflet.locatecontrol" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="leaflet-control-geocoder" level="application" />
   </component>
 </module>

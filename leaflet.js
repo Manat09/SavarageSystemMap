@@ -1,8 +1,8 @@
 var map = L.map('map').setView([51.090909, 71.418214], 14);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap by Manat and Andrey | IA-2002'
-}).addTo(map);
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+osm.addTo(map);
 var marker = L.marker([51.090909, 71.418214]).addTo(map);
 
 var circle = L.circle([51.098919, 71.398214], {
@@ -39,3 +39,58 @@ function onMapClick(e) {
 map.on('click', onMapClick);
 
 L.control.locate().addTo(map);
+
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+
+/*===================================================
+                        TILE LAYER
+   ===================================================*/
+
+var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    subdomains: 'abcd',
+    maxZoom: 19
+});
+CartoDB_DarkMatter.addTo(map);
+
+// Google Map Layer
+
+googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+googleStreets.addTo(map);
+
+// Satelite Layer
+googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+googleSat.addTo(map);
+
+var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    subdomains: 'abcd',
+    minZoom: 1,
+    maxZoom: 16,
+    ext: 'jpg'
+});
+Stamen_Watercolor.addTo(map);
+
+
+/*===================================================
+                      LAYER CONTROL
+===================================================*/
+
+var baseLayers = {
+    "Satellite":googleSat,
+    "Google Map":googleStreets,
+    "Water Color":Stamen_Watercolor,
+    "OpenStreetMap": osm,
+};
+
+L.control.layers(baseLayers).addTo(map);
+
