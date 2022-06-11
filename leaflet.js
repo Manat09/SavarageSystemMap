@@ -5,21 +5,28 @@ var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 osm.addTo(map);
 var marker = L.marker([51.090909, 71.418214]).addTo(map);
 
-var circle = L.circle([51.098919, 71.398214], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
+var circle = L.circle([51.098429, 71.406155],{
+    color: 'blue', fillColor: 'white', fillOpacity: 1, radius: 30
+}).addTo(map);
+var circle2 = L.circle([51.102579, 71.407614],{
+    color: 'blue', fillColor: 'white', fillOpacity: 1, radius: 30
+}).addTo(map);
+var circle3 = L.circle([51.106971, 71.409245],{
+    color: 'blue', fillColor: 'white', fillOpacity: 1, radius: 30
+}).addTo(map);
+var circle4 = L.circle( [51.111498, 71.410789],{
+    color: 'blue', fillColor: 'white', fillOpacity: 1, radius: 30
 }).addTo(map);
 
 var polygon = L.polygon([
-    [51.099919, 71.428214],
-    [51.093919, 71.448214],
-    [51.100919, 71.462214]
+    [51.098429, 71.406155],
+    [51.102579, 71.407614],
+    [51.106971, 71.409245],
+    [51.111498, 71.410789]
 ]).addTo(map);
 
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-circle.bindPopup("I am a circle.");
+// marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+
 polygon.bindPopup("I am a polygon.");
 
 var popup = L.popup()
@@ -32,23 +39,30 @@ var popup = L.popup();
 function onMapClick(e) {
     popup
         .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
+        .setContent(e.latlng.toString())
         .openOn(map);
 }
-
 map.on('click', onMapClick);
+
+marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+
+function onCircleClick(f) {
+    popup
+        .setLatLng(f.latlng)
+        .setContent("Координаты: " + f.latlng.toString())
+        .openOn(map);
+}
+circle.on('click' + onCircleClick);
+circle.bindPopup('click' + onCircleClick);
 
 L.control.locate().addTo(map);
 
 //-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------
 
 /*===================================================
                         TILE LAYER
-   ===================================================*/
+===================================================*/
 
 var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     subdomains: 'abcd',
@@ -71,13 +85,6 @@ googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
 });
 googleSat.addTo(map);
 
-var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
-    subdomains: 'abcd',
-    minZoom: 1,
-    maxZoom: 16,
-    ext: 'jpg'
-});
-Stamen_Watercolor.addTo(map);
 
 
 /*===================================================
@@ -88,7 +95,6 @@ var baseLayers = {
     "Схема": osm,
     "Спутник":googleSat,
     "Гибрид":googleStreets,
-    "Цветовая: Вода":Stamen_Watercolor,
 };
 
 L.control.layers(baseLayers).addTo(map);
