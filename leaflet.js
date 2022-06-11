@@ -3,6 +3,7 @@ var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | by Manat and Andrey'
 });
 osm.addTo(map);
+
 var marker = L.marker([51.090909, 71.418214]).addTo(map);
 
 var circle = L.circle([51.098429, 71.406155],{
@@ -29,10 +30,7 @@ var polygon = L.polygon([
 
 polygon.bindPopup("I am a polygon.");
 
-var popup = L.popup()
-    .setLatLng([51.103919, 71.418214])
-    .setContent("I am a standalone popup.")
-    .openOn(map);
+
 
 var popup = L.popup();
 
@@ -73,6 +71,7 @@ CartoDB_DarkMatter.addTo(map);
 // Google Map Layer
 
 googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | by Manat and Andrey',
     maxZoom: 20,
     subdomains:['mt0','mt1','mt2','mt3']
 });
@@ -80,6 +79,7 @@ googleStreets.addTo(map);
 
 // Satelite Layer
 googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | by Manat and Andrey',
     maxZoom: 20,
     subdomains:['mt0','mt1','mt2','mt3']
 });
@@ -100,24 +100,6 @@ var baseLayers = {
 L.control.layers(baseLayers).addTo(map);
 
 
-
-/*===================================================
-                      SEARCH BUTTON
-===================================================*/
-// var geocoder = L.Control.geocoder({
-//     defaultMarkGeocode: false
-// })
-//     .on('markgeocode', function(e) {
-//         var bbox = e.geocode.bbox;
-//         var poly = L.polygon([
-//             bbox.getSouthEast(),
-//             bbox.getNorthEast(),
-//             bbox.getNorthWest(),
-//             bbox.getSouthWest()
-//         ]).addTo(map);
-//         map.fitBounds(poly.getBounds());
-//     })
-//     .addTo(map);
-// L.Control.geocoder().addTo(map)
+L.Control.geocoder().addTo(map);
 
 
